@@ -1,0 +1,29 @@
+<!-- extindem templateul parinte -->
+{% extends "layout.html" %}
+<!-- cu acest cod va fi inclocui contentul -->
+{% block content %}
+<!--    <div class="card">-->
+<!--      <div class="card-header">-->
+<!--        Featured-->
+<!--      </div>-->
+<!--      <div class="card-body">-->
+<!--        <h5 class="card-title">Special title treatment</h5>-->
+<!--        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+<!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--      </div>-->
+      <h1>
+          {{ user_name }}
+      </h1>
+      <img src="{{ url_for('static', filename = profile_picture) }} " class="rounded-circle" height=105 width=105  />
+<div>
+      <form method="post" action="">
+          <input class="btn btn-lg btn-primary" type="submit" name="create_button" value="Creeaza postare">
+          <input class="btn btn-lg btn-primary" type="submit" name="not_create_button" value="Nu creeaza postare">
+      </form>
+
+</div>
+
+
+<!--    </div>-->
+
+{% endblock content %}

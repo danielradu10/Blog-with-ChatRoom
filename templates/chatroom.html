@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="message-box">
+  <h2>Chat Room: {{code}}</h2>
+  <div class="messages" id="messages"></div>
+  <div class="inputs">
+    <input
+      type="text"
+      rows="3"
+      placeholder="Message"
+      name="message"
+      id="message"
+    />
+  </div>
+  <div>
+    <button id="buton_incerc" onclick="pressedFunction()"> Send </button>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+        var socket = io();
+        socket.on('connect', function() {
+            socket.emit('connect', {data: 'I\'m connected!'});
+        });
+
+        function pressedFunction()
+        {
+          mesaj = document.getElementById("message").value
+
+          socket.emit("enter_pressed", mesaj)
+
+          document.getElementById("message").value = ""
+          document.getElementById("buton_incerc").style.color = "red"
+
+        }
+
+        const messages = document.getElementById("messages")
+        const createMessage = (name, msg, place) => {
+
+            const content = `
+            <div class="container_chat">
+            <img src="/static/images/poza.jpg" alt="Avatar">
+            <p>${msg}</p>
+            <span class="time-left">${name}</span>
+          </div>
+         `;
+    messages.innerHTML += content;
+  };
+        socket.on("message_received", function (data)
+        {
+          createMessage(data["username"], data['mesaj'], data["place"])
+        })
+
+    </script>
+{% endblock content %}

@@ -1,0 +1,26 @@
+<!-- extindem templateul parinte -->
+{% extends "layout.html" %}
+<!-- cu acest cod va fi inclocui contentul -->
+{% block content %}
+    <p>
+        Mouse pos: <b><span id="mouse-pos"></span></b>
+    </p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
+<script>
+        const mousePosText = document.getElementById('mouse-pos');
+        let mousePos = { x: undefined, y: undefined };
+        var socket = io();
+
+        window.addEventListener('mousemove', (event) => {
+            mousePos = { x: event.clientX, y: event.clientY };
+          mousePosText.textContent = `(${mousePos.x}, ${mousePos.y})`;
+          window.addEventListener('mousedown', (event) => {
+              socket.emit("click_pressed", "a apasat")
+          })
+        });
+
+</script>
+
+{% endblock content %}

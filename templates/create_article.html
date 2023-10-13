@@ -1,0 +1,28 @@
+<!-- extindem templateul parinte -->
+{% extends "layout.html" %}
+<!-- cu acest cod va fi inclocui contentul -->
+{% block content %}
+<form id="aritcleForm" action="" enctype="multipart/form-data" method="POST" >
+    <div class="form-group">
+        <label for="Titlu">Titlul</label>
+        <textarea class="form-control" id="Titlu" rows="1" name="titlu">  </textarea>
+    </div>
+    <div class="form-group">
+        <label for="Text">Text</label>
+        <textarea class="form-control" id="Text" rows="5" name="text"></textarea>
+    </div>
+
+
+    <div class="form-group">
+        <label for="Image">Atasezi si o imagine?</label>
+        <input type="file" class="form-control-file" id="Image" name="imagine_articol">
+    </div>
+    <div class="form-group">
+        <label for="Song">Te gandesti la o melodie?</label>
+        <input type="text" class="form-control" id="Song" placeholder="Introdu un link...">
+    </div>
+
+    <input class="btn btn-lg btn-primary" type="submit" name="done_button" value="Done">
+
+</form>
+{% endblock content %}
